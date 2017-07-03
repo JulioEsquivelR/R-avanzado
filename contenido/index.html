@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>R avanzado</title>
   <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="R avanzado">
+  <meta name="author" content="Kevin Pérez C, Profesor Auxiliar">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -13,7 +13,10 @@
     media="only screen and (max-device-width: 480px)" >
   <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
   <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
-  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
 
   
   <!-- Grab CDN jQuery, fall back to local if offline -->
@@ -31,10 +34,13 @@
     
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/unicordoba3.png">
+  </aside>
   <hgroup class="auto-fadein">
-    <h1></h1>
-    <h2></h2>
-    <p><br/></p>
+    <h1>R avanzado</h1>
+    <h2>Contenido programático</h2>
+    <p>Kevin Pérez C, Profesor Auxiliar<br/>Departamento de Matemáticas y Estadística - Universidad de Córdoba</p>
   </hgroup>
   <article></article>  
 </slide>
@@ -43,25 +49,127 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>Contenido Programático</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
-</ol>
+    <h3><strong>Cápitulo I - Obtención, Limpieza y Manipulación de datos en R</strong></h3>
+
+<ul class = "build incremental">
+<li>Lectura archivos locales (Archivos Planos, csv, txt), Excel, etc.<br></li>
+<li>Descarga de archivos y lectura de archivos Web, API&#39;s, </li>
+<li>Otras fuentes de datos</li>
+<li>Bases de datos, archivos comprimidos, Otros <em>SW Estadístico</em>. </li>
+<li>Manejo de directorios<br></li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="class" id="id" style="background:;">
+<slide class="" id="slide-2" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>Contenido Programático</h2>
   </hgroup>
   <article data-timings="">
-    
+    <h3><strong>Cápitulo I - Obtención, Limpieza y Manipulación de datos en R</strong></h3>
+
+<ul class = "build incremental">
+<li><p>El modelo <em><strong>Tidy</strong></em> (<code>tidyr</code>, <code>lubridate</code>, <code>reshape</code>)</p></li>
+<li><p>Manipulación de cadenas de caracteres </p></li>
+<li><p>Formato de los datos </p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Contenido Programático</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3><strong>Cápitulo I - Obtención, Limpieza y Manipulación de datos en R</strong></h3>
+
+<ul class = "build incremental">
+<li><p>Manipulación de datos con <code>dplyr</code> </p></li>
+<li><p>Manipulación de datos <code>data.table</code></p></li>
+<li><p>Operaciones en conjuntos de datos (Unión, Intersección, etc.)</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Contenido Programático</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3><strong>Cápitulo II - programación avanzada en R</strong></h3>
+
+<ul class = "build incremental">
+<li>Estructuras de control y lógica de programación en R</li>
+<li>Programación funcional</li>
+<li>Expresiones, ambientes y manejo de errores </li>
+<li>Depuración, perfilado y funciones robustas en R</li>
+<li>Programación orientada a objetos en R</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Contenido Programático</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3><strong>Cápitulo III - visualización avanzada de datos en R</strong></h3>
+
+<ul class = "build incremental">
+<li>Sistemas de visualización de gráficos en R</li>
+<li>Gráficos interactivos en R</li>
+<li>Aplicaciones web con R (Shiny) </li>
+<li>Tableros de visualización de datos. </li>
+<li>Edición de textos con Rmarkdown </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Contenido Programático</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3><strong>Cápitulo IV - construcción de paquetes en R</strong></h3>
+
+<ul class = "build incremental">
+<li><p>Paquetes en R</p></li>
+<li><p>Documentación y pruebas de paquetes </p></li>
+<li><p>Licencias, control de versiones y diseño de software</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2><strong>Referencias</strong></h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Advanced R, Hadley Wickham, Chapman &amp; Hall’s R Series, New York, 2013.</li>
+<li>Data Analysis and Graphics Using R. John Maindonald, John Braun, R. Gill, Cambridge University Press, 2003.<br></li>
+<li>ggplot2: Elegant Graphics for Data Analysis. Hadley Wickham, Springer-Verlag New York, 2016.</li>
+<li>Mastering Software Development in R , Roger d. Peng et all, LeanPub. 2016. </li>
+<li>R Programming for Data Science, Roger d. Peng. LeanPub. 2015. </li>
+<li>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data, Hadley Wickham et all, O’REiLLY, New York, 2016.</li>
+<li>The Art of R Programming: A Tour of Statistical Software Design, Norman Matloff, New York, 2013.<br></li>
+</ul>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -72,14 +180,44 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+        data-slide=1 title='Contenido Programático'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='Contenido Programático'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Contenido Programático'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Contenido Programático'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Contenido Programático'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Contenido Programático'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='<strong>Referencias</strong>'>
+         7
       </a>
     </li>
   </ul>
@@ -91,6 +229,40 @@
   <![endif]-->
 </body>
   <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  
+  <script src="shared/shiny.js" type="text/javascript"></script>
+  <script src="shared/slider/js/jquery.slider.min.js"></script>
+  <script src="shared/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="shared/slider/css/jquery.slider.min.css"></link>
   
   <!-- LOAD HIGHLIGHTER JS FILES -->
   <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
