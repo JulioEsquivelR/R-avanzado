@@ -15,7 +15,7 @@ knit        : slidify::knit2slides
 ---
 
 
-## Manejo de directorio de trabajo 
+## Manejo de directorios de trabajo 
 
 - Un componente básico de trabajar con datos es conocer su directorio de trabajo
 - Los dos comandos principales son ```getwd()``` y ```setwd()```. 
