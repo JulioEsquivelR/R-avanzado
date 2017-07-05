@@ -1,0 +1,406 @@
+---
+title       : R avanzado  
+subtitle    : Limpieza de datos 
+author      : Kevin Pérez C, Profesor Auxiliar
+job         : Departamento de Matemáticas y Estadística - Universidad de Córdoba
+logo        : unicordoba3.png
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+widescreen  : true
+smaller     : true
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax, bootstrap, quiz, shiny, interactive]            
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Los datos 
+
+<br> 
+
+<img class=center src= assets/img/img1.png height=450 weight=800 />
+
+
+--- 
+
+## Acerca de la limpieza 
+
+<br> 
+
+<img class=center src= assets/img/img2.png height=450 weight=600 />
+
+---
+
+## Los datos fuente 
+
+- El extraño archivo binario que su máquina imprime
+- El archivo Excel no formateado con 10 hojas de trabajo que le envió su compañero de empresa 
+- Los complicados datos `JSON` que obtiene al conectarse a la API de _Twitter_
+- Los números ingresados manualmente que se recolectan mirando a través de un microscopio
+
+---
+
+## Los datos ordenados 
+
+- Cada variable que se mide debe estar en una columna
+- Cada observación diferente de esa variable debe estar en una fila diferente
+- Debe haber una tabla para cada "tipo" de variable
+- Si se tienen varias tablas, deben incluir una columna en cada tabla que les permita estar vinculadas
+
+---
+
+## Los datos ordenados 
+<br> 
+
+<img class=center src= assets/img/img3.png height=450/>
+
+- Cumple con los tres primeros conceptos 
+
+---
+
+## Los datos ordenados 
+
+<br> 
+
+<img class=center src= assets/img/img4.png height=450/>
+
+- ¿Falla en alguno de los conceptos? 
+
+---
+
+## Ancho vs. largo 
+
+<img class=center src= assets/img/img5.png height=450/>
+
+---
+
+## Explorando datos 
+
+```{r}
+head(iris, 3)
+tail(iris, 3)
+```
+
+---
+
+## Explorando datos
+```{r}
+str(iris)
+```
+
+---
+
+
+## Explorando datos
+
+```{r}
+dplyr::glimpse(iris)
+```
+
+---
+
+
+## Explorando datos
+```{r}
+summary(iris)
+```
+
+---
+
+## Explorando datos
+```{r}
+# Clase del objeto
+class(iris)
+
+# Dimensiones 
+dim(iris)
+
+# Nombres
+#names(iris)
+```
+
+---
+
+## El paquete `tidyr`
+
+- Un paquete escrito por _Hadley Wickham_
+
+- Aplica los principios de la data ordenada 
+
+- Es un conjunto de pequeñas funciones 
+
+---
+
+## El paquete `tidyr`
+
+La función más importante en `tidy` es `gather()`. Debe utilizarse cuando se tienen columnas que no son variables y se desea contraerlas en pares _clave-valor._ Sus parámetros más importantes son:
+
+- _data:_ Un data frame
+- _key:_ Nombre simple de la nueva columna clave
+- _value:_ Nombre simple de los nuevos valores de columna 
+
+---
+
+## El paquete `tidyr`
+
+```{r}
+mini_iris <- iris[c(1, 51, 101), ]
+mini_iris
+```
+
+---
+
+## El paquete `tidyr`
+
+```{r}
+tidyr::gather(mini_iris, key = flower_att, value = measurement,
+       Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)
+```
+
+---
+
+## El paquete `tidyr`
+
+```{r}
+tidyr::gather(mini_iris, key = flower_att, value = measurement, -Species)
+```
+
+---
+
+## El paquete `tidyr`
+
+La operación opuesta a `gather()` es `spread()`, que toma los pares _clave-valor_ y los propaga a través de varias columnas. Esto es útil cuando los valores de una columna deberían ser nombres de columnas (es decir, variables). También puede hacer que los datos sean más compactos y más fáciles de leer.
+
+- _data:_ Un data frame
+- _key:_ Nombre simple de la columna clave
+- _value:_ Nombre simple de los valores en columna 
+
+---
+
+## El paquete `tidyr`
+
+```{r}
+mini_iris_new <- tidyr::gather(mini_iris, key = flower_att, 
+                               value = measurement, -Species)
+tidyr::spread(mini_iris_new, flower_att, measurement)
+mini_iris
+```
+
+---
+
+## El paquete `tidyr`
+
+La función `separate()`, permite separar una columna en varias. A menos que se le ordene de otra manera, intentará separar en cualquier carácter que no sea una letra o un número. También puede especificar un separador específico mediante el argumento `sep`.
+
+- _data:_ Un data frame
+- _col:_ Nombre simple de la columna a separar 
+- _into:_ Un vector de caracteres con el nuevo nombre de los valores por columna 
+
+---
+
+## El paquete `tidyr`
+
+```{r}
+set.seed(1)
+date <- as.Date('2017-01-01') + 0:14
+hour <- sample(1:24, 15)
+min <- sample(1:60, 15)
+second <- sample(1:60, 15)
+event <- sample(letters, 15)
+data_date <- data.frame(date, hour, min, second, event)
+head(data_date)
+```
+
+---
+
+## El paquete `tidyr`
+
+```{r}
+data_date_new <- tidyr::separate(data_date, date, 
+                                 c("year", "month", "day"))
+head(data_date_new)
+```
+
+---
+
+## El paquete `tidyr`
+
+La función inversa de `separate()` es `unite()`, que toma varias columnas y las pega juntas. De forma predeterminada, el contenido de las columnas se separará mediante subrayados en la nueva columna, pero este comportamiento se puede modificar mediante el argumento `sep`.
+
+- _data:_ Un data frame
+- _col:_ Nombre simple de la nueva columna
+- _`...`_ Nombres de las columnas a unir 
+
+---
+
+## El paquete `tidyr`
+
+```{r}
+
+head(tidyr::unite(data_date_new, time, hour, min, second, sep = ":"))
+
+```
+
+---
+
+## Síntomas comunes de datos desordenados
+
+- Los encabezados de columna son valores, no nombres de variables
+
+<img class=center src= assets/img/img6.png height=450/>
+
+--- 
+
+## Síntomas comunes de datos desordenados
+
+- Las variables se almacenan en filas y columnas
+
+<img class=center src= assets/img/img7.png height=450/>
+
+--- 
+
+## Síntomas comunes de datos desordenados
+
+- Múltiples variables se almacenan en una columna
+
+<img class=center src= assets/img/img8.png height=450/>
+
+--- 
+
+## Síntomas comunes de datos desordenados
+
+- Una sola unidad de observación se almacena en múltiples tablas
+- Múltiples tipos de unidades de observación se almacenan en la misma tabla
+
+<img class=center src= assets/img/img9.png height=450/>
+
+--- 
+
+## Cadenas de caracteres 
+
+Un problema común que aparece cuando se limpian datos es la necesidad de eliminar el espacio en blanco en cadenas de caracteres inicial y/o posterior. La función `str_trim()` del paquete `stringr` hace que sea fácil hacer esto dejando intacta la parte de la cadena que realmente desea.
+
+```{r}
+c("   Filip ", "Nick  ", " Jonathan")
+
+stringr::str_trim(c("   Filip ", "Nick  ", " Jonathan"))
+```
+
+---
+
+## Cadenas de caracteres 
+
+Un problema similar se presenta cuando se necesita rellenar espacios para hacer de un determinado ancho las cadenas de caracteres.
+
+```{r}
+stringr::str_pad(c("23485W", "8823453Q", "994Z"), width = 9, 
+                 side = "left", pad = "0")
+```
+
+---
+
+## Cadenas de caracteres 
+
+En algunos casos se deben hacer cadenas en mayúsculas o minúsculas, esto es muy sencillo en R (base) gracias a `toupper()` y `tolower()`. Cada función toma exactamente un argumento: la cadena de caracteres (o vector/columna de cadenas) que se convertirá en el caso deseado.
+
+```{r}
+toupper(letters)
+tolower(LETTERS)
+```
+
+---
+
+## Cadenas de caracteres 
+
+El paquete `stringr` proporciona dos funciones que son muy útiles para encontrar y/o reemplazar cadenas: `str_detect()` y `str_replace()`. Como todas las funciones en `stringr`, el primer argumento de cada uno es la cadena de interés. El segundo argumento de cada uno es el patrón de interés.
+
+```{r}
+friends <- c("Sarah", "Tom", "Alice")
+stringr::str_detect(friends, "Alice")
+stringr::str_replace(friends, "Alice", "David")
+```
+
+---
+
+## Fechas 
+
+Las fechas pueden ser un reto para trabajar en cualquier lenguaje de programación, pero gracias al paquete `lubridate`, trabajar con fechas en R no es tan malo.
+
+```{r}
+lubridate::ymd("2015-08-25")
+lubridate::ymd("2015 Agosto 25")
+lubridate::mdy("Agosto 25, 2015")
+```
+
+---
+
+## Fechas 
+
+Las fechas pueden ser un reto para trabajar en cualquier lenguaje de programación, pero gracias al paquete `lubridate`, trabajar con fechas en R no es tan malo.
+
+```{r}
+lubridate::hms("13:33:09")
+lubridate::mdy_hm("Julio 2, 2012 12:56")
+lubridate::ymd_hms("2015/08/25 13.33.09")
+```
+
+---
+
+## Valores faltantes `NA's` 
+
+Los valores faltantes son denotados por `NA` ó `NaN` para indeterminaciones matemáticas 
+
+
+- `is.na()` es utilizado para probar si existe algún `NA`
+
+- `is.nan()` es utilizado para probar si existe algún `NaN`
+
+- Los `NA` pertenecen a una clase , así, existen enteros `NA`, caracteres `NA`, etc.
+
+- Un valor `NaN` también es `NA` pero lo contrario no es cierto
+
+---
+
+## Valores faltantes `NA's` 
+
+```{r}
+x <- c(1, 2, NA, 10, 3)
+is.na(x)
+is.nan(x)
+```
+
+---
+
+
+## Valores faltantes `NA's` 
+
+```{r}
+x <- c(1, 2, NaN, NA, 4)
+bad <- is.na(x)
+x[!bad]
+```
+
+---
+
+## Valores faltantes `NA's` 
+
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+y <- c("a", "b", NA, "d", NA, "f")
+good <- complete.cases(x, y)
+good
+x[good]
+y[good]
+```
+
+---
+
+## Valores faltantes `NA's` 
+
+```{r}
+airquality[5:6, ]
+good <- complete.cases(airquality); airquality[good, ][1:6, ]
+```
+
+---
+
