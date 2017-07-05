@@ -699,3 +699,5 @@ good <- complete.cases(airquality); airquality[good, ][1:6, ]
 ## 8    19      99 13.8   59     5   8
 ```
 
+
+
