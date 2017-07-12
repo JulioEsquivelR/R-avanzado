@@ -1,0 +1,9 @@
+base
+hflights
+bindrcpp
+dplyr
+dbplyr
+DBI
+RMySQL
+readr
+purrr
